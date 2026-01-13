@@ -30,9 +30,7 @@ Adding this add-ons repository to your Home Assistant instance:
 2. Click the **three dots** in the top right corner and select **Repositories**
 3. Add the following URL:
 
-```
-https://github.com/Viotic/hassio-vilabs-private
-```
+`https://github.com/Viotic/hassio-vilabs-private`
 
 Once added, you will see the new add-ons available for installation in the store. Each add-on is designed to be self-contained with minimal configuration required to get started.
 
@@ -105,10 +103,11 @@ Each add-on includes comprehensive configuration options. See individual README 
   - SSH access credentials
 - Enable authentication on all exposed services
 - Use Home Assistant secrets for sensitive values:
+
   ```yaml
   # ✅ Correct - use secrets
   postgres_password: !secret postgres_password
-  
+
   # ❌ Wrong - never hardcode
   postgres_password: "my-password-here"
   ```
@@ -126,6 +125,7 @@ Each add-on includes comprehensive configuration options. See individual README 
 For detailed deployment instructions with security best practices, see [DEPLOYMENT.example.md](DEPLOYMENT.example.md).
 
 **Remember:** Replace all placeholder values:
+
 - `192.168.x.x` → Your actual local IP
 - `your-domain.example` → Your actual domain
 - `root@your-hassio-ip` → Your actual SSH connection

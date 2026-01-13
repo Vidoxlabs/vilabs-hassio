@@ -19,6 +19,7 @@ If you discover a security vulnerability in this Home Assistant add-on repositor
    - Suggested fix (if available)
 
 We will:
+
 - Acknowledge receipt within 48 hours
 - Work with you to understand the scope
 - Release a patched version if needed
@@ -27,23 +28,27 @@ We will:
 ## Security Best Practices for Users
 
 ### Installation
+
 - Only add this repository from the official GitHub URL
 - Verify repository signatures when available
 - Use HTTPS for all Home Assistant communications
 
 ### Configuration
+
 - **Change default passwords immediately** after installation
 - Never commit `secrets.yaml` to version control
 - Use strong, unique passwords for all services
 - Enable authentication on all exposed services
 
 ### Network Security
+
 - Run Home Assistant on a private, trusted network
 - Use a VPN or firewall to protect remote access
 - Keep Home Assistant and add-ons updated
 - Monitor logs for suspicious activity
 
 ### Secrets Management
+
 - Store sensitive data in Home Assistant secrets, not in code
 - Use environment variables for API keys
 - Rotate credentials regularly
@@ -52,6 +57,7 @@ We will:
 ## Sensitive Data Handling
 
 This repository does NOT contain:
+
 - Real IP addresses or domain names
 - Default credentials (except for configuration examples marked as `changeme`)
 - Private keys or SSH credentials
@@ -63,6 +69,7 @@ All examples use placeholder values (e.g., `10.10.10.x`, `your-domain.example`).
 ## Container Security
 
 All Docker images in this repository:
+
 - Use minimal base images to reduce attack surface
 - Run services with appropriate privilege levels
 - Include security labels in Dockerfiles

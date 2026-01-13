@@ -1,14 +1,14 @@
 ---
-name: "n8n"
-description: "Workflow automation tool with direct filesystem access and optional database integration."
-version: "1.0.0"
-slug: "vi-n8n"
-url: "https://github.com/Viotic/hassio-vilabs-private/tree/main/n8n"
+name: n8n
+description: Workflow automation tool with direct filesystem access and optional database integration.
+version: 1.0.0
+slug: vi-n8n
+url: https://github.com/Vidoxlabs/vilabs-hassio/tree/main/n8n
 codeowners:
-  - "@Viotic"
-homeassistant: "2024.12.0"
-startup: "services"
-boot: "auto"
+  - "@Vidoxlabs"
+homeassistant: 2024.12.0
+startup: services
+boot: auto
 arch:
   - aarch64
   - amd64
@@ -17,29 +17,29 @@ ingress_port: 5678
 ports:
   5678/tcp: 5678
 ports_description:
-  5678/tcp: "n8n UI and API port"
+  5678/tcp: n8n UI and API port
 map:
   - share:rw
   - media:rw
 environment:
-  N8N_HOST: "127.0.0.1"
-  N8N_PORT: "5678"
-  N8N_PROTOCOL: "http"
+  N8N_HOST: 127.0.0.1
+  N8N_PORT: 5678
+  N8N_PROTOCOL: http
   N8N_USER_FOLDER: /data
   N8N_CUSTOM_EXTENSIONS_PATH: /data/custom-extensions
-  NODE_OPTIONS: "--max-old-space-size=2048"
+  NODE_OPTIONS: --max-old-space-size=2048
 options:
-  log_level: "info"
-  execution_mode: "regular"
-  webhook_url: ""
+  log_level: info
+  execution_mode: regular
+  webhook_url:
   max_execution_timeout: 3600
   max_parallel_executions: 4
-  db_type: "sqlite"
-  postgres_host: "vi-postgres"
-  postgres_db: "n8n"
-  postgres_user: "postgres"
-  postgres_password: "changeme"
-  redis_host: "vi-redis"
+  db_type: sqlite
+  postgres_host: vi-postgres
+  postgres_db: n8n
+  postgres_user: postgres
+  postgres_password: changeme
+  redis_host: vi-redis
 schema:
   log_level: list(debug|info|warn|error)
   execution_mode: list(regular|queue)
@@ -52,4 +52,4 @@ schema:
   postgres_user: str?
   postgres_password: password?
   redis_host: str?
-image: "ghcr.io/viotic/addon-n8n:{version}"
+image: ghcr.io/vidoxlabs/addon-n8n:{version}

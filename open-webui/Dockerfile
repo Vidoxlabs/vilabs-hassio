@@ -10,7 +10,8 @@ ARG BUILD_VERSION
 FROM ${BUILD_FROM}
 
 # Install system dependencies and Python
-RUN apt-get update && apt-get install -y \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
     python3 \
     python3-pip \
     python3-dev \
@@ -20,16 +21,17 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
     git \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Open WebUI
-RUN pip3 install --no-cache-dir --upgrade pip setuptools wheel && \
-    pip3 install --no-cache-dir open-webui
+RUN pip3 install --no-cache-dir --upgrade pip setuptools wheel \
+    && pip3 install --no-cache-dir open-webui
 
-# Create openwebui user and directories
-RUN useradd -m -s /bin/bash -u 1000 openwebui || true && \
-    mkdir -p /data && \
-    chown -R openwebui:openwebui /data
+# Create openwebui user and directories and set permissions
+RUN useradd -m -s /bin/bash -u 1000 openwebui || true \
+    && mkdir -p /data \
+    && chown -R openwebui:openwebui /data
 
 # Copy service supervision files
 COPY rootfs /
@@ -45,14 +47,14 @@ LABEL io.hass.name="${BUILD_NAME}" \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
-    maintainer="Viotic" \
+    maintainer="Vidoxlabs" \
     org.opencontainers.image.created=${BUILD_DATE} \
-    org.opencontainers.image.authors="Viotic" \
-    org.opencontainers.image.url="https://github.com/Viotic/hassio-vilabs-private" \
-    org.opencontainers.image.source="https://github.com/Viotic/hassio-vilabs-private/tree/main/open-webui" \
+    org.opencontainers.image.authors="Vidoxlabs" \
+    org.opencontainers.image.url="https://github.com/Vidoxlabs/vilabs-hassio" \
+    org.opencontainers.image.source="https://github.com/Vidoxlabs/vilabs-hassio/tree/main/open-webui" \
     org.opencontainers.image.version=${BUILD_VERSION} \
     org.opencontainers.image.revision=${BUILD_REF} \
-    org.opencontainers.image.vendor="Viotic"
+    org.opencontainers.image.vendor="Vidoxlabs"
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \

@@ -1,94 +1,94 @@
 ---
-name: "PostgreSQL"
-description: "Production-grade relational database with pgvector extension for semantic search"
-version: "1.0.0"
-slug: "vi-postgres"
-url: "https://github.com/Viotic/hassio-vilabs-private/tree/main/postgres"
+name: PostgreSQL
+description: Production-grade relational database with pgvector extension for semantic search
+version: 1.0.0
+slug: vi-postgres
+url: https://github.com/Vidoxlabs/vilabs-hassio/tree/main/postgres
 codeowners:
-  - "@Viotic"
-homeassistant: "2024.12.0"
-startup: "services"
-boot: "auto"
-stage: "stable"
+  - "@Vidoxlabs"
+homeassistant: 2024.12.0
+startup: services
+boot: auto
+stage: stable
 arch:
   - aarch64
   - amd64
 ports:
   5432/tcp: 5432
 ports_description:
-  5432/tcp: "PostgreSQL port"
+  5432/tcp: PostgreSQL port
 volumes:
   postgres_data:
     life_cycle: keep
-    description: "PostgreSQL data directory"
+    description: PostgreSQL data directory
   postgres_backups:
     life_cycle: keep
-    description: "PostgreSQL backup storage"
+    description: PostgreSQL backup storage
 environment:
   PGDATA: /var/lib/postgresql/16/main
 options:
-  postgres_user: "postgres"
-  postgres_password: "changeme"
-  postgres_db: "homeassistant"
+  postgres_user: postgres
+  postgres_password: changeme
+  postgres_db: homeassistant
   max_connections: 200
-  shared_buffers: "4GB"
-  effective_cache_size: "8GB"
-  work_mem: "16MB"
-  maintenance_work_mem: "256MB"
-  log_level: "info"
-  log_statement: "none"
+  shared_buffers: 4GB
+  effective_cache_size: 8GB
+  work_mem: 16MB
+  maintenance_work_mem: 256MB
+  log_level: info
+  log_statement: none
 schema:
   postgres_user:
-    type: "string"
-    description: "PostgreSQL superuser username"
-    default: "postgres"
+    type: string
+    description: PostgreSQL superuser username
+    default: postgres
   postgres_password:
-    type: "string"
-    description: "PostgreSQL superuser password"
-    default: "changeme"
+    type: string
+    description: PostgreSQL superuser password
+    default: changeme
   postgres_db:
-    type: "string"
-    description: "Default database to create on init"
-    default: "homeassistant"
+    type: string
+    description: Default database to create on init
+    default: homeassistant
   max_connections:
-    type: "integer"
-    description: "Maximum database connections"
+    type: integer
+    description: Maximum database connections
     default: 200
     minimum: 10
     maximum: 1000
   shared_buffers:
-    type: "string"
-    description: "PostgreSQL shared buffer pool (e.g., 256MB, 1GB)"
-    default: "4GB"
+    type: string
+    description: PostgreSQL shared buffer pool (e.g., 256MB, 1GB)
+    default: 4GB
   effective_cache_size:
-    type: "string"
-    description: "Effective cache size for query planner"
-    default: "8GB"
+    type: string
+    description: Effective cache size for query planner
+    default: 8GB
   work_mem:
-    type: "string"
-    description: "Work memory per operation"
-    default: "16MB"
+    type: string
+    description: Work memory per operation
+    default: 16MB
   maintenance_work_mem:
-    type: "string"
-    description: "Memory for VACUUM, CREATE INDEX, ALTER TABLE"
-    default: "256MB"
+    type: string
+    description: Memory for VACUUM, CREATE INDEX, ALTER TABLE
+    default: 256MB
   log_level:
-    type: "select"
-    description: "PostgreSQL log level"
-    default: "info"
+    type: select
+    description: PostgreSQL log level
+    default: info
     options:
-      - "debug"
-      - "info"
-      - "notice"
-      - "warning"
-      - "error"
+      - debug
+      - info
+      - notice
+      - warning
+      - error
   log_statement:
-    type: "select"
-    description: "Log SQL statements (none, ddl, mod, all)"
-    default: "none"
+    type: select
+    description: Log SQL statements (none, ddl, mod, all)
+    default: none
     options:
-      - "none"
-      - "ddl"
-      - "mod"
-      - "all"
-image: "ghcr.io/viotic/addon-postgres:{version}"
+      - none
+      - ddl
+      - mod
+      - all
+image: ghcr.io/vidoxlabs/addon-postgres:{version}

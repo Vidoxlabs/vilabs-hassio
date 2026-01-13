@@ -4,19 +4,17 @@ FROM ${BUILD_FROM}
 ENV DENO_INSTALL=/usr/local
 ENV PATH=${DENO_INSTALL}/bin:${PATH}
 
-# Install dependencies (Deno)
-RUN apt-get update && apt-get install -y \
+# Install dependencies and applications
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
     curl \
     unzip \
+    && curl -fsSL https://deno.land/x/install/install.sh | sh \
+    && deno install -f --name silverbullet --unstable-kv --unstable-worker-options -A https://get.silverbullet.md \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
-# Install Deno
-# Using Deno install script
-RUN curl -fsSL https://deno.land/x/install/install.sh | sh
-
-# Install SilverBullet
-# The binary will be installed to /usr/local/bin/silverbullet
-RUN deno install -f --name silverbullet --unstable-kv --unstable-worker-options -A https://get.silverbullet.md
 
 COPY rootfs /
 
@@ -36,4 +34,4 @@ LABEL \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
-    maintainer="Viotic"
+    maintainer="Vidoxlabs"

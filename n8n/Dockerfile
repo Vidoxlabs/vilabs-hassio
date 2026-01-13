@@ -1,25 +1,25 @@
-ARG BUILD_FROM
+FROM ${BUILD_FROM}
+
 ARG BUILD_DATE
 ARG BUILD_ARCH
 ARG BUILD_NAME
 ARG BUILD_REF
-ARG BUILD_REPOSITORY
 ARG BUILD_DESCRIPTION
 ARG BUILD_VERSION
 
-FROM ${BUILD_FROM}
-
 # Install Node.js and n8n dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
     curl \
     gnupg \
     ca-certificates \
     && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs \
+    && apt-get install -y --no-install-recommends nodejs \
     && npm install -g n8n \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# Create n8n user and directories
+# Create n8n user and directories and set permissions
 RUN useradd -m -s /bin/bash -u 1000 n8n || true \
     && mkdir -p /data/custom-extensions \
     && mkdir -p /data/.n8n \
@@ -39,14 +39,14 @@ LABEL io.hass.name="${BUILD_NAME}" \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
-    maintainer="Viotic" \
+    maintainer="Vidoxlabs" \
     org.opencontainers.image.created=${BUILD_DATE} \
-    org.opencontainers.image.authors="Viotic" \
-    org.opencontainers.image.url="https://github.com/Viotic/hassio-vilabs-private" \
-    org.opencontainers.image.source="https://github.com/Viotic/hassio-vilabs-private/tree/main/vi-n8n" \
+    org.opencontainers.image.authors="Vidoxlabs" \
+    org.opencontainers.image.url="https://github.com/Vidoxlabs/vilabs-hassio" \
+    org.opencontainers.image.source="https://github.com/Vidoxlabs/vilabs-hassio/tree/main/n8n" \
     org.opencontainers.image.version=${BUILD_VERSION} \
     org.opencontainers.image.revision=${BUILD_REF} \
-    org.opencontainers.image.vendor="Viotic"
+    org.opencontainers.image.vendor="Vidoxlabs"
 
 # Setup entrypoint
 ENTRYPOINT ["/init"]
