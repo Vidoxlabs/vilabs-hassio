@@ -1,0 +1,2 @@
+#!/bin/bash
+exec chpst -u postgres /usr/lib/postgresql/16/bin/pg_ctl -D /var/lib/postgresql/16/main -m fast stop

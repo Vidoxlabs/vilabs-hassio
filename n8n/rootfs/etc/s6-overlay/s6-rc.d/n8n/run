@@ -1,0 +1,2 @@
+#!/command/execlineb
+exec chpst -u n8n /usr/bin/start-n8n.sh

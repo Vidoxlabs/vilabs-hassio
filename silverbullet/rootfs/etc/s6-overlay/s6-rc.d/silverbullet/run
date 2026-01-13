@@ -1,0 +1,9 @@
+#!/command/with-contenv bashio
+set -e
+
+SPACE_PATH="/share/silverbullet"
+mkdir -p "$SPACE_PATH"
+
+bashio::log.info "Starting SilverBullet..."
+# Port 3000 is default for SB. We bind to 0.0.0.0 effectively inside container
+exec silverbullet server --port 3000 --user "" "$SPACE_PATH"

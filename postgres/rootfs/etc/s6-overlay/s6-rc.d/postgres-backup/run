@@ -1,0 +1,39 @@
+#!/command/with-contenv bashio
+
+# Wait for Postgres to be ready
+bashio::log.info "Waiting for PostgreSQL to be ready..."
+until pg_isready -h localhost -U postgres > /dev/null 2>&1; do
+    sleep 5
+done
+
+BACKUP_DIR="/share/postgres-backups"
+if ! mkdir -p "$BACKUP_DIR"; then
+    bashio::log.error "Could not create backup directory $BACKUP_DIR"
+    exit 1
+fi
+
+bashio::log.info "PostgreSQL Backup Service Started. Backups will be saved to $BACKUP_DIR."
+
+while true; do
+    # Calculate seconds until 3 AM
+    # This is a bit complex in shell. Simple 24h loop from start time.
+    # We'll just sleep 24h.
+
+    bashio::log.info "Scheduling next backup in 24 hours..."
+    sleep 86400
+
+    TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
+    FILENAME="$BACKUP_DIR/backup_$TIMESTAMP.sql"
+
+    bashio::log.info "Starting backup: $FILENAME"
+
+    if pg_dumpall -h localhost -U postgres --clean --if-exists --file="$FILENAME"; then
+        bashio::log.info "Backup successful."
+
+        # Keep last 7 backups
+        bashio::log.info "Cleaning up old backups (keeping last 7)..."
+        ls -tp "$BACKUP_DIR" | grep -v '/$' | tail -n +8 | xargs -I {} rm -- "$BACKUP_DIR/{}" 2>/dev/null || true
+    else
+        bashio::log.error "Backup failed!"
+    fi
+done

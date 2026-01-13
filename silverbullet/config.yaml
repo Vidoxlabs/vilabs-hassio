@@ -1,0 +1,21 @@
+---
+name: "SilverBullet"
+description: "A hackable, extensible, open-source personal knowledge management system."
+version: "1.0.0"
+slug: "vi-silverbullet"
+url: "https://github.com/Viotic/hassio-vilabs-private/tree/main/silverbullet"
+codeowners:
+  - "@Viotic"
+homeassistant: "2024.12.0"
+startup: "services"
+boot: "auto"
+arch:
+  - aarch64
+  - amd64
+ingress: true
+ingress_port: 3000
+map:
+  - share:rw
+options: {}
+schema: {}
+image: "ghcr.io/vidoxlabs/addon-silverbullet:{version}"

@@ -1,0 +1,78 @@
+{
+  "name": "Viotic Home Assistant Add-ons",
+  "url": "https://github.com/Viotic/hassio-vilabs-private",
+  "maintainer": "Viotic",
+  "codeowners": ["@Viotic"],
+  "addons": {
+    "postgres": {
+      "name": "PostgreSQL",
+      "description": "Production-grade relational database with pgvector extension for semantic search and vector embeddings.",
+      "slug": "vi-postgres",
+      "url": "https://github.com/Viotic/hassio-vilabs-private/tree/main/postgres",
+      "version": "1.0.0",
+      "homeassistant": "2024.12.0",
+      "arch": ["aarch64", "amd64"],
+      "startup": "services",
+      "boot": "auto",
+      "stage": "stable",
+      "repository": "ghcr.io/viotic/addon-postgres",
+      "image": "ghcr.io/viotic/addon-postgres:{version}"
+    },
+    "redis": {
+      "name": "Redis",
+      "description": "High-speed in-memory data store for caching, session state, and workflow execution buffers.",
+      "slug": "vi-redis",
+      "url": "https://github.com/Viotic/hassio-vilabs-private/tree/main/redis",
+      "version": "1.0.0",
+      "homeassistant": "2024.12.0",
+      "arch": ["aarch64", "amd64"],
+      "startup": "services",
+      "boot": "auto",
+      "stage": "stable",
+      "repository": "ghcr.io/viotic/addon-redis",
+      "image": "ghcr.io/viotic/addon-redis:{version}"
+    },
+    "n8n": {
+      "name": "n8n",
+      "description": "Powerful workflow automation and orchestration tool with local file access and integration capabilities.",
+      "slug": "vi-n8n",
+      "url": "https://github.com/Viotic/hassio-vilabs-private/tree/main/n8n",
+      "version": "1.0.0",
+      "homeassistant": "2024.12.0",
+      "arch": ["aarch64", "amd64"],
+      "startup": "services",
+      "boot": "auto",
+      "stage": "stable",
+      "repository": "ghcr.io/viotic/addon-n8n",
+      "image": "ghcr.io/viotic/addon-n8n:{version}"
+    },
+    "open-webui": {
+      "name": "Open WebUI",
+      "description": "Chat interface for local and external LLMs with flexible model integration.",
+      "slug": "vi-open-webui",
+      "url": "https://github.com/Viotic/hassio-vilabs-private/tree/main/open-webui",
+      "version": "1.0.0",
+      "homeassistant": "2024.12.0",
+      "arch": ["aarch64", "amd64"],
+      "startup": "services",
+      "boot": "auto",
+      "stage": "stable",
+      "repository": "ghcr.io/viotic/addon-open-webui",
+      "image": "ghcr.io/viotic/addon-open-webui:{version}"
+    },
+    "silverbullet": {
+      "name": "SilverBullet",
+      "description": "A hackable, extensible, open-source personal knowledge management system.",
+      "slug": "vi-silverbullet",
+      "url": "https://github.com/Viotic/hassio-vilabs-private/tree/main/silverbullet",
+      "version": "1.0.0",
+      "homeassistant": "2024.12.0",
+      "arch": ["aarch64", "amd64"],
+      "startup": "services",
+      "boot": "auto",
+      "stage": "stable",
+      "repository": "ghcr.io/viotic/addon-silverbullet",
+      "image": "ghcr.io/viotic/addon-silverbullet:{version}"
+    }
+  }
+}

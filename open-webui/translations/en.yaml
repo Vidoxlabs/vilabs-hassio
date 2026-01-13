@@ -1,0 +1,43 @@
+configuration:
+  log_level:
+    name: Log level
+    description: "Controls verbosity of Open WebUI logging (debug, info, notice, warning, error)"
+  ollama_base_url:
+    name: Ollama server URL
+    description: "External Ollama GPU node endpoint (e.g., http://v37-gpu-01:11434)"
+  default_models:
+    name: Default models
+    description: "Comma-separated list of models to load by default (e.g., mistral,llama2)"
+  enable_signup:
+    name: Allow signup
+    description: "Allow new user registration or single-user mode"
+  enable_login_form:
+    name: Enable login
+    description: "Show login form (disable for single-user mode)"
+  enable_web_search:
+    name: Web search
+    description: "Enable web search functionality in chat"
+  web_search_engine:
+    name: Search engine
+    description: "Search engine for web search (duckduckgo, google, brave, searxng)"
+  enable_image_generation:
+    name: Image generation
+    description: "Enable image generation (requires Stable Diffusion or ComfyUI)"
+  automatic_1111_base_url:
+    name: Stable Diffusion URL
+    description: "Stable Diffusion WebUI URL for image generation"
+  comfyui_base_url:
+    name: ComfyUI URL
+    description: "ComfyUI URL for image generation"
+  openai_api_base_url:
+    name: OpenAI API endpoint
+    description: "OpenAI-compatible API endpoint (optional)"
+  openai_api_key:
+    name: OpenAI API key
+    description: "API key for OpenAI-compatible endpoint"
+  enable_model_filter:
+    name: Model filter
+    description: "Enable filtering of available models"
+  model_filter_list:
+    name: Model filter list
+    description: "Comma-separated list of models to allow or filter"

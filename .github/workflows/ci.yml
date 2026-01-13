@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  lint:
+    name: Lint Add-ons
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run shellcheck on scripts
+        run: |
+          sudo apt-get install -y shellcheck
+          find . -name "*.sh" -type f | xargs shellcheck || true
+
+      - name: Validate YAML configs
+        run: |
+          sudo apt-get install -y yamllint
+          find . -name "config.yaml" -type f | xargs yamllint || true
+
+      - name: Validate JSON
+        run: |
+          python3 -m json.tool repository.json > /dev/null
+          echo "repository.json is valid"
+
+  build:
+    name: Build Add-ons
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        addon:
+          - n8n
+          - redis
+          - postgres
+          - open-webui
+          - silverbullet
+        arch:
+          - amd64
+          - aarch64
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Container Registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract add-on metadata
+        id: meta
+        run: |
+          VERSION=$(grep "version:" ${{ matrix.addon }}/config.yaml | head -1 | awk '{print $NF}' | tr -d '"')
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "image_name=${{ env.REGISTRY }}/${{ github.repository_owner }}/addon-${{ matrix.addon }}" >> $GITHUB_OUTPUT
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.addon }}
+          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+          tags: |
+            ${{ steps.meta.outputs.image_name }}:latest
+            ${{ steps.meta.outputs.image_name }}:${{ steps.meta.outputs.version }}
+          platforms: linux/${{ matrix.arch }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            BUILD_FROM=ghcr.io/hassio-addons/base:latest
+            BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+            BUILD_VERSION=${{ steps.meta.outputs.version }}
+            BUILD_ARCH=${{ matrix.arch }}
+
+  docs:
+    name: Check Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for README files
+        run: |
+          for addon in n8n redis postgres open-webui silverbullet; do
+            if [ ! -f "$addon/README.md" ]; then
+              echo "Missing README for $addon"
+              exit 1
+            fi
+          done
+          echo "All add-ons have README files"
+
+      - name: Validate markdown
+        run: |
+          sudo apt-get install -y markdownlint
+          find . -name "README.md" -type f | xargs markdownlint || true

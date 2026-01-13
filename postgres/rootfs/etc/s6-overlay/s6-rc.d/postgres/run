@@ -1,0 +1,2 @@
+#!/command/execlineb
+exec chpst -u postgres /usr/lib/postgresql/16/bin/postgres -D /var/lib/postgresql/16/main -c config_file=/etc/postgresql/postgresql.conf

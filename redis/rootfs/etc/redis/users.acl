@@ -1,0 +1,4 @@
+# Default Redis ACL file (empty for local network)
+# For local-only deployment, no ACL needed
+# Format for custom users (if needed):
+# user <username> on >password +@all ~*

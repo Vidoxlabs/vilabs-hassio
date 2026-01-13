@@ -1,0 +1,19 @@
+configuration:
+  log_level:
+    name: Log level
+    description: "Controls verbosity of n8n logging (debug, info, warn, error)"
+  execution_mode:
+    name: Execution mode
+    description: "regular=immediate execution, queue=asynchronous with queue"
+  webhook_url:
+    name: Webhook URL
+    description: "External webhook URL for n8n (leave empty for local-only, no cloud)"
+  max_execution_timeout:
+    name: Max execution timeout
+    description: "Maximum workflow execution duration in seconds (60-86400)"
+  max_parallel_executions:
+    name: Max parallel executions
+    description: "Maximum number of concurrent workflow executions (1-16, tuned for i7)"
+  db_type:
+    name: Database type
+    description: "sqlite=local embedded database, postgres=external vi-postgres"
