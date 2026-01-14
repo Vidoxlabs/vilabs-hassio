@@ -73,7 +73,7 @@ jobs:
         run: |
           VERSION=$(grep "version:" ${{ matrix.addon }}/config.yaml | head -1 | awk '{print $NF}' | tr -d '"')
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
-          echo "image_name=${{ env.REGISTRY }}/${{ github.repository_owner }}/addon-${{ matrix.addon }}" >> $GITHUB_OUTPUT
+          echo "image_name=${{ env.REGISTRY }}/vidoxlabs/addon-${{ matrix.addon }}" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
