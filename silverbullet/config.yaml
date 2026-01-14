@@ -3,9 +3,9 @@ name: SilverBullet
 description: A hackable, extensible, open-source personal knowledge management system.
 version: 1.0.0
 slug: vi-silverbullet
-url: https://github.com/Vidoxlabs/vilabs-hassio/tree/main/silverbullet
+url: https://github.com/vidoxlabs/vilabs-hassio/tree/main/silverbullet
 codeowners:
-  - "@Vidoxlabs"
+  - "@vidoxlabs"
 homeassistant: 2024.12.0
 startup: services
 boot: auto

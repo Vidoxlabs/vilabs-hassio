@@ -16,3 +16,7 @@ This add-on maps `/share/silverbullet` as the "Space" for your notes.
 ## Credits
 
 Based on [SilverBullet](https://silverbullet.md).
+
+## Code Owner
+
+This add-on is maintained by [vidoxlabs](https://github.com/vidoxlabs).

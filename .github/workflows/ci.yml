@@ -87,7 +87,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
-            BUILD_FROM=ghcr.io/hassio-addons/base:latest
+            BUILD_FROM=ghcr.io/hassio-addons/debian-base:20.0.1-${{ matrix.arch }}
             BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
             BUILD_VERSION=${{ steps.meta.outputs.version }}
             BUILD_ARCH=${{ matrix.arch }}

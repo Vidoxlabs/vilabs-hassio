@@ -6,7 +6,7 @@
 
 ## Role in Sovereign Stack
 
-```
+```markdown
 Home Assistant User
     ↓
 Vi-Face (Open WebUI)  ← You are here
@@ -36,7 +36,7 @@ Local Model (mistral, llama2, etc.)
 
 Unlike traditional Open WebUI deployments, **vi-openwebui** is configured specifically for Home Assistant:
 
-```
+```markdown
 Home Assistant OS (i7 CPU)
 ├─ Home Assistant Core
 ├─ vi-n8n (workflows)
@@ -86,22 +86,21 @@ Image Generation: false (unless you have Stable Diffusion)
 
 ### All Configuration Options
 
-| Option                   | Default                 | Description                                     |
-| ------------------------ | ----------------------- | ----------------------------------------------- |
-| **Log Level**            | info                    | Verbosity (debug, info, notice, warning, error) |
-| **Ollama URL**           | http://v37-gpu-01:11434 | External Ollama GPU node endpoint               |
-| **Default Models**       | (empty)                 | Models to pre-load (comma-separated)            |
-| **Allow Signup**         | true                    | Permit new user registration                    |
-| **Login Form**           | true                    | Show login UI                                   |
-| **Web Search**           | false                   | Enable web search in conversations              |
-| **Search Engine**        | duckduckgo              | Engine for web search                           |
-| **Image Generation**     | false                   | Enable image synthesis                          |
-| **Stable Diffusion URL** | (empty)                 | WebUI endpoint for images                       |
-| **ComfyUI URL**          | (empty)                 | ComfyUI endpoint for images                     |
-| **OpenAI API URL**       | (empty)                 | Alternative LLM endpoint                        |
-| **OpenAI API Key**       | (empty)                 | API key for alternative endpoint                |
-| **Model Filter**         | false                   | Restrict available models                       |
-| **Filter List**          | (empty)                 | Models to allow/restrict                        |
+| Option                   | Default    | Description                                     |
+| ------------------------ | ---------- | ----------------------------------------------- |
+| **Log Level**            | info       | Verbosity (debug, info, notice, warning, error) |
+| **Default Models**       | (empty)    | Models to pre-load (comma-separated)            |
+| **Allow Signup**         | true       | Permit new user registration                    |
+| **Login Form**           | true       | Show login UI                                   |
+| **Web Search**           | false      | Enable web search in conversations              |
+| **Search Engine**        | duckduckgo | Engine for web search                           |
+| **Image Generation**     | false      | Enable image synthesis                          |
+| **Stable Diffusion URL** | (empty)    | WebUI endpoint for images                       |
+| **ComfyUI URL**          | (empty)    | ComfyUI endpoint for images                     |
+| **OpenAI API URL**       | (empty)    | Alternative LLM endpoint                        |
+| **OpenAI API Key**       | (empty)    | API key for alternative endpoint                |
+| **Model Filter**         | false      | Restrict available models                       |
+| **Filter List**          | (empty)    | Models to allow/restrict                        |
 
 ## Getting Started
 
@@ -190,7 +189,7 @@ const response = await fetch(
       model: "mistral",
       messages: [{ role: "user", content: "Hello!" }],
     }),
-  }
+  },
 );
 ```
 
@@ -268,7 +267,7 @@ curl http://vi-openwebui:8080/api/v1/chat/completions \
 
 All chat history and user data is stored in `/data`:
 
-```
+```markdown
 /data/
 ├─ open-webui.db       # SQLite database (chat history, users, models)
 ├─ uploads/            # User-uploaded files
@@ -395,7 +394,7 @@ The i7 handles the chat UI efficiently. To optimize:
 
 All data persists in `/data`:
 
-```
+```markdown
 Service Restart:      ✅ Chat history retained
 Add-on Update:        ✅ Chat history retained
 Home Assistant Update: ✅ Chat history retained

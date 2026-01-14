@@ -85,7 +85,7 @@ context = json.loads(cache.get('context:user123'))
 
 Store in-progress workflow states and intermediate results:
 
-```
+```markdown
 Database 1: n8n:workflows:*
 Database 2: n8n:executions:*
 TTL: 24-48 hours
@@ -95,7 +95,7 @@ TTL: 24-48 hours
 
 Cache recent embeddings and semantic search results from vi-postgres:
 
-```
+```markdown
 Database 3: llm:embeddings:*
 Database 4: llm:context:*
 TTL: 1-8 hours
@@ -105,7 +105,7 @@ TTL: 1-8 hours
 
 Track Home Assistant sessions and n8n credentials:
 
-```
+```markdown
 Database 5: session:*
 Database 6: credentials:*
 TTL: Session duration (24 hours default)
@@ -115,16 +115,14 @@ TTL: Session duration (24 hours default)
 
 Implement rate limits for external API calls:
 
-```
+```markdown
 Database 7: ratelimit:api:*
 TTL: Per-endpoint (typically 1 minute)
 ```
 
 ## Performance Tuning
 
-For the i7-1355U with 16GB RAM:
-
-```
+```markdown
 # Reasonable Redis allocation
 maxmemory: 4gb                    # 25% of total RAM
 maxmemory_policy: allkeys-lru     # Smart eviction

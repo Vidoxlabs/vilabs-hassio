@@ -3,9 +3,9 @@ name: Open WebUI
 description: Chat interface for local and external LLMs
 version: 1.0.0
 slug: vi-open-webui
-url: https://github.com/Vidoxlabs/vilabs-hassio/tree/main/open-webui
+url: https://github.com/vidoxlabs/vilabs-hassio/tree/main/open-webui
 codeowners:
-  - "@Vidoxlabs"
+  - "@vidoxlabs"
 homeassistant: 2024.12.0
 startup: services
 boot: auto
