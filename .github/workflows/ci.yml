@@ -72,8 +72,10 @@ jobs:
         id: meta
         run: |
           VERSION=$(grep "version:" ${{ matrix.addon }}/config.yaml | head -1 | awk '{print $NF}' | tr -d '"')
+          # Convert repository owner to lowercase for Docker registry compatibility
+          OWNER_LC=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
-          echo "image_name=${{ env.REGISTRY }}/${{ github.repository_owner }}/addon-${{ matrix.addon }}" >> $GITHUB_OUTPUT
+          echo "image_name=${{ env.REGISTRY }}/${OWNER_LC}/addon-${{ matrix.addon }}" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
