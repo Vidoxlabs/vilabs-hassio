@@ -76,7 +76,7 @@ jobs:
           echo "image_name=${{ env.REGISTRY }}/${{ github.repository_owner }}/addon-${{ matrix.addon }}" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ${{ matrix.addon }}
           push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
