@@ -23,7 +23,7 @@ The "Hippocampus" of the Sovereign Stack. A production-grade relational database
 
 1. Add the repository URL to Home Assistant Add-ons:
    ```
-   https://github.com/Viotic/hassio-vilabs-private
+   https://github.com/vidoxlabs/vilabs-hassio
    ```
 2. Install "Vi-Memory (PostgreSQL)" from the Add-ons Store
 3. Configure the addon settings (see Configuration section)
@@ -208,4 +208,4 @@ Issues or questions?
 
 - Check Home Assistant logs: `Settings → System → Logs`
 - PostgreSQL logs: `docker logs addon_vi_postgres`
-- Open an issue: [GitHub Issues](https://github.com/Viotic/hassio-vilabs-private/issues)
+- Open an issue: [GitHub Issues](https://github.com/vidoxlabs/vilabs-hassio/issues)

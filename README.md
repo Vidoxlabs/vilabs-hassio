@@ -90,7 +90,7 @@ Each add-on includes comprehensive configuration options. See individual README 
 ### **Installation Security**
 
 - Only add this repository from the official GitHub URL
-- Verify you're adding from: `https://github.com/Viotic/hassio-vilabs-private`
+- Verify you're adding from: `https://github.com/vidoxlabs/vilabs-hassio`
 - Use HTTPS for all Home Assistant communications
 - Enable two-factor authentication on your GitHub account
 
@@ -132,7 +132,7 @@ For detailed deployment instructions with security best practices, see [DEPLOYME
 
 ## **Support**
 
-- Open an issue on [GitHub](https://github.com/Viotic/hassio-vilabs-private/issues)
+- Open an issue on [GitHub](https://github.com/vidoxlabs/vilabs-hassio/issues)
 - Check the [Home Assistant Community Forum](https://community.home-assistant.io)
 
 ## **Contributing**
@@ -147,4 +147,4 @@ This project is licensed under the MIT License. See LICENSE file for details.
 
 For security policies, vulnerability reporting, and best practices, see [SECURITY.md](.github/SECURITY.md).
 
-Copyright (c) Viotic
+Copyright (c) vidoxlabs

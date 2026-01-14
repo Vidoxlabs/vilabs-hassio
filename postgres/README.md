@@ -15,4 +15,4 @@ This addon provides:
 
 ## Repository
 
-https://github.com/Viotic/hassio-vilabs-private
+https://github.com/vidoxlabs/vilabs-hassio
