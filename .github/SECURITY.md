@@ -11,7 +11,7 @@
 If you discover a security vulnerability in this Home Assistant add-on repository, please report it responsibly:
 
 1. **Do NOT** create a public GitHub issue
-2. **Email** security concerns to: viotic@github.com (or your designated security contact)
+2. **Email** security concerns to: vio@vidoxlabs.dev (or your designated security contact)
 3. Include:
    - Description of the vulnerability
    - Steps to reproduce
@@ -85,4 +85,4 @@ All Docker images in this repository:
 ---
 
 **Last Updated:** January 13, 2026
-**Maintainer:** Viotic
+**Maintainer:** Vioxniv
