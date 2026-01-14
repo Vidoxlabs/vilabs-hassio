@@ -30,7 +30,7 @@ Adding this add-ons repository to your Home Assistant instance:
 2. Click the **three dots** in the top right corner and select **Repositories**
 3. Add the following URL:
 
-`https://github.com/vidoxlabs/hassio-vilabs`
+`https://github.com/vidoxlabs/vilabs-hassio`
 
 Once added, you will see the new add-ons available for installation in the store. Each add-on is designed to be self-contained with minimal configuration required to get started.
 
